@@ -1,0 +1,169 @@
+/* Login */ 
+.form {
+  background-color: #fff;
+  display: block;
+  padding: 1rem;
+  max-width: 350px;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin: auto;
+}
+
+.form-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container input, .form button {
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
+}
+
+.input-container input {
+  background-color: #fff;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.submit {
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #4F46E5;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+
+.signup-link {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.signup-link a {
+  text-decoration: underline;
+}
+
+/* Register */
+.container-register {
+  border: solid 1px #8d8d8d;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.container-register .heading {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
+
+.form-register {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+}
+
+.form .btn-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.form .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-radius: 10px;
+  border: solid 1px #1034aa;
+  border-bottom: solid 1px #90c2ff;
+  background: linear-gradient(135deg, #0034de, #006eff);
+  color: #fff;
+  font-weight: bolder;
+  transition: all 0.2s ease;
+  box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #0070f0,
+    inset 0px -4px 5px #002cbb;
+}
+
+.form .btn:active {
+  box-shadow: inset 0px 4px 5px #0070f0, inset 0px -4px 5px #002cbb;
+  transform: scale(0.995);
+}
+
+.input-field {
+  position: a;
+}
+
+.input-field label {
+  position: absolute;
+  color: #8d8d8d;
+  pointer-events: none;
+  background-color: transparent;
+  left: 15px;
+  transform: translateY(0.6rem);
+  transition: all 0.3s ease;
+}
+
+.input-field input {
+  padding: 8px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: solid 1px #8d8d8d;
+  letter-spacing: 1px;
+  width: auto;
+}
+
+.input-field input:focus,
+.input-field input:valid {
+  outline: none;
+  border: solid 1px #0034de;
+}
+
+.input-field input:focus ~ label,
+.input-field input:valid ~ label {
+  transform: translateY(-51%) translateX(-10px) scale(0.8);
+  background-color: #fff;
+  padding: 0px 5px;
+  color: #0034de;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 100px;
+}
+
+.form .passicon {
+  cursor: pointer;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+}
+
+.form .close {
+  display: none;
+}

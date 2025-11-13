@@ -1,52 +1,72 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { login } from "./../services/fetch.js";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Home = () => {
 
-	const { store, dispatch } = useGlobalReducer()
+       
+	const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState ("");
+    const [success, setSuccess] = useState ("");
+    const navigate = useNavigate();
+    const { store, dispatch } = useGlobalReducer();
 
-	const loadMessage = async () => {
-		try {
-			const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-			if (!backendUrl) throw new Error("VITE_BACKEND_URL is not defined in .env file")
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const data = await login(email, password, dispatch);
+        setError("");
+        setSuccess("");
 
-			const response = await fetch(backendUrl + "/api/hello")
-			const data = await response.json()
 
-			if (response.ok) dispatch({ type: "set_hello", payload: data.message })
+            if (!data.token || !data.user?.id) {
+                throw new Error("Invalid login response");
+            }
 
-			return data
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user_id", data.user.id);
+          
 
-		} catch (error) {
-			if (error.message) throw new Error(
-				`Could not fetch the message from the backend.
-				Please check if the backend is running and the backend port is public.`
-			);
-		}
 
-	}
+            setSuccess("Login successfully ✔");
+            console.log("User logued:", data);
 
-	useEffect(() => {
-		loadMessage()
-	}, [])
+            setTimeout(() => {
+                navigate("/private");
+            },1000);
+            
+            } catch (err) {
+                setError("Wrong Credentials ❌");
+            }
+        };
 
-	return (
-		<div className="text-center mt-5">
-			<h1 className="display-4">Hello Rigo!!</h1>
-			<p className="lead">
-				<img src={rigoImageUrl} className="img-fluid rounded-circle mb-3" alt="Rigo Baby" />
-			</p>
-			<div className="alert alert-info">
-				{store.message ? (
-					<span>{store.message}</span>
-				) : (
-					<span className="text-danger">
-						Loading message from the backend (make sure your python 🐍 backend is running)...
-					</span>
-				)}
-			</div>
-		</div>
-	);
-}; 
+
+    return (
+        <div className="text-center justify-content-center mt-5"> 
+			<div className="form-container">
+                <form className="form-register" onSubmit={handleSubmit}>
+                    <p className="form-title">Sign in to your account</p>
+                    <div className="input-container">
+                        <input type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <span>
+                        </span>
+                    </div>
+                    <div className="input-container">
+                        <input type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <button type="submit" className="submit">
+                        Sign in
+                    </button>
+                    <p class="signup-link">
+                        No account?
+                        <Link to="/register">Sign up</Link>
+                    </p>
+                </form>
+            </div>
+        </div>
+    );
+};
